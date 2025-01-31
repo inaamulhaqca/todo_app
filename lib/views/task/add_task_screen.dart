@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/constants/colors.dart';
+import 'package:todo_app/global_widgets/custom_app_bar.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/providers/task_provider.dart';
 
@@ -18,7 +20,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Task')),
+      backgroundColor: ColorConstants.secondary,
+      appBar: const CustomAppBar(title: 'Add Task'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -27,12 +30,39 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             children: [
               TextFormField(
                 controller: _titleController,
-                decoration: const InputDecoration(labelText: 'Title*'),
+                decoration: const InputDecoration(
+                  labelText: 'Title*',
+                  fillColor: Colors.white,
+                  filled: true,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorConstants.secondary),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
                 validator: (value) => value!.isEmpty ? 'Required' : null,
+                style: const TextStyle(color: Colors.black),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               TextFormField(
                 controller: _descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  fillColor: Colors.white,
+                  filled: true,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorConstants.secondary),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+                style: const TextStyle(color: Colors.black),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
